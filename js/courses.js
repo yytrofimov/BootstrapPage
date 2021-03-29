@@ -1,12 +1,18 @@
-function createShortcutsTable(shortcuts, requiredData) {
-    let shortcutsTable = document.createElement("table");
+function createDataTable(shortcuts, requiredData, outputDivID) {
+    let table = document.createElement("table");
+    table.className = "table";
+    let tableHead = document.createElement("thead");
+    table.appendChild(tableHead);
     let labelString = document.createElement("tr");
+
     for (label of requiredData) {
         let labelCell = document.createElement("th");
         labelCell.innerHTML = label;
         labelString.appendChild(labelCell);
     }
-    shortcutsTable.appendChild(labelString);
+    tableHead.appendChild(labelString);
+    let tableBody = document.createElement("tbody");
+    table.appendChild(tableBody);
     for (shortcut of shortcuts) {
         let tableString = document.createElement("tr");
         for (label of requiredData) {
@@ -14,21 +20,22 @@ function createShortcutsTable(shortcuts, requiredData) {
             stringCell.innerHTML += shortcut[label];
             tableString.appendChild(stringCell);
         }
-        shortcutsTable.append(tableString);
+        tableBody.append(tableString);
     }
-    document.body.append(shortcutsTable);
+    let outDiv = document.getElementById(outputDivID);
+
+    outDiv.appendChild(table);
 }
 
-function axiosGetJSON(pathToFile,requiredData) {
-    let shortcuts = [];
+function axiosGetJSON(pathToFile, requiredData, outputDivID) {
+    let dataset = [];
     axios.get(pathToFile).then((response) => {
-        for (i of response.data["shortcuts"]) {
-            shortcuts.push(i);
+        for (i of response.data) {
+            dataset.push(i);
         }
-        createShortcutsTable(shortcuts,requiredData)
+        createDataTable(dataset, requiredData, outputDivID);
     });
-    return shortcuts;
+    return dataset;
 }
 
-
-axiosGetJSON('json/shortcuts.json',['name','url'])
+axiosGetJSON("data/courses_1 copy.json", ["kurs", "kunskapspoäng"], "output_1");
