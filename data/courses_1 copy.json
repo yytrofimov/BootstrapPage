@@ -1,0 +1,47 @@
+[
+    {
+        "kurs" : "Grunder i programmering",
+        "kunskapspoäng" : 2
+
+    },
+    {
+        "kurs" : "Användbarhet och tillgänglighet",
+        "kunskapspoäng" : 1
+
+    },
+    {
+        "kurs" : "Användargränssnitt",
+        "kunskapspoäng" : 3
+
+    },
+    {
+        "kurs" :"Utvecklingsmiljöer",
+        "kunskapspoäng" : 3
+
+    },
+    {
+        "kurs" :"Användning av frameworks",
+        "kunskapspoäng" : 3
+
+    },
+    {
+        "kurs" :"Dokumentation och testning",
+        "kunskapspoäng" : 2
+
+    },
+    {
+        "kurs" :"2D/3D objekt",
+        "kunskapspoäng" : 3
+
+    },
+    {
+        "kurs" :"Animering",
+        "kunskapspoäng" : 2
+
+    },
+    {
+        "kurs" :"Kompilatorprogrammering",
+        "kunskapspoäng" : 3
+
+    }
+]
