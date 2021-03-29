@@ -1,47 +1,47 @@
 [
     {
-        "kurs" : "Grunder i programmering",
-        "kunskapspoäng" : 2
+        "Kurs" : "Grunder i programmering",
+        "Kunskapspoäng (kp)" : 2
 
     },
     {
-        "kurs" : "Användbarhet och tillgänglighet",
-        "kunskapspoäng" : 1
+        "Kurs" : "Användbarhet och tillgänglighet",
+        "Kunskapspoäng (kp)" : 1
 
     },
     {
-        "kurs" : "Användargränssnitt",
-        "kunskapspoäng" : 3
+        "Kurs" : "Användargränssnitt",
+        "Kunskapspoäng (kp)" : 3
 
     },
     {
-        "kurs" :"Utvecklingsmiljöer",
-        "kunskapspoäng" : 3
+        "Kurs" :"Utvecklingsmiljöer",
+        "Kunskapspoäng (kp)" : 3
 
     },
     {
-        "kurs" :"Användning av frameworks",
-        "kunskapspoäng" : 3
+        "Kurs" :"Användning av frameworks",
+        "Kunskapspoäng (kp)" : 3
 
     },
     {
-        "kurs" :"Dokumentation och testning",
-        "kunskapspoäng" : 2
+        "Kurs" :"Dokumentation och testning",
+        "Kunskapspoäng (kp)" : 2
 
     },
     {
-        "kurs" :"2D/3D objekt",
-        "kunskapspoäng" : 3
+        "Kurs" :"2D/3D objekt",
+        "Kunskapspoäng (kp)" : 3
 
     },
     {
-        "kurs" :"Animering",
-        "kunskapspoäng" : 2
+        "Kurs" :"Animering",
+        "Kunskapspoäng (kp)" : 2
 
     },
     {
-        "kurs" :"Kompilatorprogrammering",
-        "kunskapspoäng" : 3
+        "Kurs" :"Kompilatorprogrammering",
+        "Kunskapspoäng (kp)" : 3
 
     }
 ]
