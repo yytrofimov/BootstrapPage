@@ -16,8 +16,8 @@
     <body>
         <div class="wrapper">
             <header>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="index.html">Mina studier - Yuriy Trofimov</a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+                    <a class="navbar-brand" href="index.html" role="link">Mina studier - Yuriy Trofimov</a>
                     <button
                         class="navbar-toggler"
                         type="button"
@@ -30,25 +30,25 @@
                     </button>
                     <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link active" href="courses.html">Kurser</a>
-                            <a class="nav-link" href="to-do.html">To-Do</a>
+                            <a class="nav-link active" href="courses.html" role="link">Kurser</a>
+                            <a class="nav-link" href="to-do.html" role="link">To-Do</a>
                         </div>
                     </div>
                 </nav>
             </header>
-            <main>
+            <main role="main">
                 <article class="container-lg">
                     <div class="row justify-content-center my-5">
-                        <h1>Kurser våren 2021</h1>
+                        <h1 role="banner">Kurser våren 2021</h1>
                     </div>
                     <div class="row" style="background-color: white">
                         <section class="col-sm-6">
-                            <p class="text-center my-3">Pie-Chart</p>
-                            <canvas id="course-chart" width="1" height="1"></canvas>
+                            <p class="text-center my-3" role="banner">Pie-Chart</p>
+                            <canvas id="course-chart" width="1" height="1" role="chart"></canvas>
                         </section>
                         <section class="col-sm-6">
-                            <p class="my-3">Kurser i tabell</p>
-                            <div id="course-table"></div>
+                            <p class="my-3" role="banner">Kurser i tabell</p>
+                            <div id="course-table" role="table"></div>
                         </section>
                     </div>
                 </article>

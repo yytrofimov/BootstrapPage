@@ -16,8 +16,8 @@
     <body>
         <div class="wrapper">
             <header>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="index.html">Mina studier - Yuriy Trofimov</a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+                    <a class="navbar-brand" href="index.html" role="link">Mina studier - Yuriy Trofimov</a>
                     <button
                         class="navbar-toggler"
                         type="button"
@@ -30,21 +30,21 @@
                     </button>
                     <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link" href="courses.html">Kurser</a>
-                            <a class="nav-link active" href="to-do.html">To-Do</a>
+                            <a class="nav-link" href="courses.html" role="link">Kurser</a>
+                            <a class="nav-link active" href="to-do.html" role="link">To-Do</a>
                         </div>
                     </div>
                 </nav>
             </header>
-            <main>
+            <main role="main">
                 <article class="container">
                     <div class="row justify-content-center my-5">
-                        <h1>To-Do</h1>
+                        <h1 role="banner">To-Do</h1>
                     </div>
                     <section class="row todo-container">
                         <form class="todo-form">
-                            <input type="text" class="todo-input" placeholder="Add a Todo..." />
-                            <button type="submit" class="add-button">Add</button>
+                            <input type="text" class="todo-input" placeholder="Add a Todo..." role="textbox" />
+                            <button type="submit" class="add-button" role="button">Add</button>
                         </form>
                         <ul class="todo-items"></ul>
                     </section>

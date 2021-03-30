@@ -16,8 +16,8 @@
     <body>
         <div class="wrapper">
             <header>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="index.html">Mina studier - Yuriy Trofimov</a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+                    <a class="navbar-brand" href="index.html" role="link">Mina studier - Yuriy Trofimov</a>
                     <button
                         class="navbar-toggler"
                         type="button"
@@ -30,37 +30,55 @@
                     </button>
                     <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link" href="courses.html">Kurser</a>
-                            <a class="nav-link" href="to-do.html">To-Do</a>
+                            <a class="nav-link" href="courses.html" role="link">Kurser</a>
+                            <a class="nav-link" href="to-do.html" role="link">To-Do</a>
                         </div>
                     </div>
                 </nav>
             </header>
-            <main>
+            <main role="main">
                 <article class="container">
                     <div class="row justify-content-center my-5">
-                        <h1>Mina studier</h1>
+                        <h1 role="banner">Mina studier</h1>
                     </div>
                     <div class="row">
                         <section class="col-sm-6 my-3">
                             <div class="card">
-                                <img class="card-img-top" src="img/courses_1.jpg" alt="Card image cap" />
+                                <img
+                                    class="card-img-top"
+                                    src="img/courses_1.jpg"
+                                    alt="Courses sample image"
+                                    role="img"
+                                    aria-label="Illustration"
+                                />
                                 <div class="card-body">
                                     <h5 class="card-title">Kurser</h5>
                                     <p class="card-text">Kolla mina kurser som pie-chart</p>
-                                    <a href="courses.html" class="btn btn btn-success">Kolla mina kurser</a>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    <a href="courses.html" class="btn btn btn-success" role="button"
+                                        >Kolla mina kurser</a
+                                    >
+                                    <p class="card-text" role="note">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </p>
                                 </div>
                             </div>
                         </section>
                         <section class="col-sm-6 my-3">
                             <div class="card">
-                                <img class="card-img-top" src="img/todo_1.png" alt="Card image cap" />
+                                <img
+                                    class="card-img-top"
+                                    src="img/todo_1.png"
+                                    alt="Sample image with 'To-Do' inscription"
+                                    role="img"
+                                    aria-label="Illustration"
+                                />
                                 <div class="card-body">
                                     <h5 class="card-title">To-Do lista</h5>
                                     <p class="card-text">Personlig To-Do för våren...</p>
-                                    <a href="to-do.html" class="btn btn btn-success">Kolla To-Do</a>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    <a href="to-do.html" class="btn btn btn-success" role="button">Kolla To-Do</a>
+                                    <p class="card-text" role="note">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </p>
                                 </div>
                             </div>
                         </section>
