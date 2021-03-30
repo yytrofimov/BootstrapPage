@@ -37,11 +37,18 @@
                 </nav>
             </header>
             <main>
-                <div class="container">
+                <article class="container">
                     <div class="row justify-content-center my-5">
                         <h1>To-Do</h1>
                     </div>
-                </div>
+                    <section class="row todo-container">
+                        <form class="todo-form">
+                            <input type="text" class="todo-input" placeholder="Add a Todo..." />
+                            <button type="submit" class="add-button">Add</button>
+                        </form>
+                        <ul class="todo-items"></ul>
+                    </section>
+                </article>
             </main>
         </div>
 
@@ -55,5 +62,6 @@
             integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
             crossorigin="anonymous"
         ></script>
+        <script src="js/to-do.js"></script>
     </body>
 </html>
