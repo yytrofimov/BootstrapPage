@@ -1,7 +1,7 @@
 function createCoursesOut(dataset, requiredData, tableID, chartID) {
     const rate = 18;
     let table = document.createElement("table");
-    table.className = "table";
+    table.className = "table table-striped";
     let tableHead = document.createElement("thead");
     table.appendChild(tableHead);
     let labelString = document.createElement("tr");
