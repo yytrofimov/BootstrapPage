@@ -94,3 +94,7 @@ ul {
     align-items: center;
     padding: 20px;
 }
+
+tr:hover {
+background-color: #E0E5E6;
+}
