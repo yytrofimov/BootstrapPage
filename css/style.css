@@ -1,3 +1,13 @@
+:root {
+    --todo-button-color: #7e8283;
+    --todo-button-hovered-color: #bac2c5;
+    --todo-delete-button-color: #dc143c;
+    --body-background-color: #E0E5E6;
+}
+
+body {
+    background-color: var(--body-background-color);
+}
 .card-img-top {
     height: 300px;
     width: auto;
@@ -19,8 +29,7 @@
 }
 
 .add-button {
-    background-color: #0000ff;
-    color: #fff;
+    background-color: var(--todo-button-color);
     border: none;
     outline: none;
     border-radius: 5px;
@@ -54,7 +63,7 @@
 
 .delete-button {
     float: right;
-    background-color: #dc143c;
+    background-color: var(--todo-delete-button-color);
     border: none;
     outline: none;
     border-radius: 7px;
@@ -70,7 +79,7 @@
 
 button:hover {
     cursor: pointer;
-    background-color: #73e831;
+    background-color: var(--todo-button-hovered-color);
 }
 
 ul {
@@ -84,5 +93,4 @@ ul {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #bccdd4;
 }
