@@ -1,4 +1,4 @@
-function createCoursesOut(dataset, requiredData, outputDivID) {
+function createCoursesOut(dataset, requiredData, tableID, chartID) {
     const rate = 18;
     let table = document.createElement("table");
     table.className = "table";
@@ -20,11 +20,15 @@ function createCoursesOut(dataset, requiredData, outputDivID) {
     table.appendChild(tableBody);
 
     let points = [];
+    let labels = []
     for (sample of dataset) {
         let tableString = document.createElement("tr");
         for (label of requiredData) {
             if (label != "Kurs") {
                 points.push(sample[label]);
+            }
+            else {
+                labels.push(sample[label])
             }
             let stringCell = document.createElement("th");
             stringCell.innerHTML += sample[label];
@@ -51,13 +55,36 @@ function createCoursesOut(dataset, requiredData, outputDivID) {
     tableString.appendChild(stringCell);
     tableBody.append(tableString);
 
-    let outDiv = document.getElementById(outputDivID);
+    let outDiv = document.getElementById(tableID);
     outDiv.appendChild(table);
+    console.log(labels)
+    new Chart(document.getElementById(chartID), {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Kurser våren 2021",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850","#3e95cd", "#8e5ea2", "#3cba9f","#c45850"],
+                    data: points,
+                },
+            ],
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Kurser våren 2021",
+            },
+        },
+    });
 }
 
-function axiosGetJSON(pathToFile, requiredData, outputDivID) {
+function courseHandler(pathToFile, requiredData, tableID,chartID) {
     let dataset = [];
-    let gifout = document.getElementById(outputDivID);
+    let gifout = document.getElementById(tableID);
     let gifimg = document.createElement("img");
     gifimg.src = "./img/giphy.gif";
     gifout.appendChild(gifimg);
@@ -65,52 +92,12 @@ function axiosGetJSON(pathToFile, requiredData, outputDivID) {
         for (i of response.data) {
             dataset.push(i);
         }
-        createCoursesOut(dataset, requiredData, outputDivID);
+        createCoursesOut(dataset, requiredData, tableID,chartID);
     });
     gifimg.src = "";
     return dataset;
 }
 
-axiosGetJSON("data/courses_1 copy.json", ["Kurs", "Kunskapspoäng (kp)"], "output_1");
+courseHandler("data/courses_1 copy.json", ["Kurs", "Kunskapspoäng (kp)"], "course-table",'course-chart');
 
-function createCoursesDiagram(outputDivID) {
-    let ctx = document.getElementById("output_2");
-    data = {
-        datasets: [
-            {
-                data: [10, 20, 30],
-            },
-        ],
 
-        // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: ["Red", "Yellow", "Blue"],
-    };
-    options = {};
-    let myPieChart = new Chart(ctx, {
-        type: "pie",
-        data: data,
-        options: options,
-    });
-}
-
-// createCoursesDiagram('output_2')
-
-new Chart(document.getElementById("pie-chart"), {
-    type: "pie",
-    data: {
-        labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-        datasets: [
-            {
-                label: "Population (millions)",
-                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                data: [2478, 5267, 734, 784, 433],
-            },
-        ],
-    },
-    options: {
-        title: {
-            display: true,
-            text: "Predicted world population (millions) in 2050",
-        },
-    },
-});
