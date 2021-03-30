@@ -10,25 +10,21 @@ function createCoursesOut(dataset, requiredData, tableID, chartID) {
         labelCell.innerHTML = label;
         labelString.appendChild(labelCell);
     }
-
     let labelCell = document.createElement("th");
     labelCell.innerHTML = "Timmar (h)";
     labelString.appendChild(labelCell);
     tableHead.appendChild(labelString);
-
     let tableBody = document.createElement("tbody");
     table.appendChild(tableBody);
-
     let points = [];
-    let labels = []
+    let labels = [];
     for (sample of dataset) {
         let tableString = document.createElement("tr");
         for (label of requiredData) {
             if (label != "Kurs") {
                 points.push(sample[label]);
-            }
-            else {
-                labels.push(sample[label])
+            } else {
+                labels.push(sample[label]);
             }
             let stringCell = document.createElement("th");
             stringCell.innerHTML += sample[label];
@@ -39,12 +35,10 @@ function createCoursesOut(dataset, requiredData, tableID, chartID) {
         tableString.appendChild(stringCell);
         tableBody.append(tableString);
     }
-
     let tableString = document.createElement("tr");
     let stringCell = document.createElement("th");
     stringCell.innerHTML += "Totals";
     tableString.appendChild(stringCell);
-
     for (let i = 0; i < requiredData.length - 1; i++) {
         let stringCell = document.createElement("th");
         stringCell.innerHTML += points.reduce((a, b) => a + b, 0);
@@ -54,10 +48,12 @@ function createCoursesOut(dataset, requiredData, tableID, chartID) {
     stringCell.innerHTML += points.reduce((a, b) => a + b, 0) * rate;
     tableString.appendChild(stringCell);
     tableBody.append(tableString);
-
     let outDiv = document.getElementById(tableID);
     outDiv.appendChild(table);
-    console.log(labels)
+    let colors = [];
+    for (let i = 0; i < labels.length; i++) {
+        colors.push(getRandomColor());
+    }
     new Chart(document.getElementById(chartID), {
         type: "pie",
         data: {
@@ -65,14 +61,14 @@ function createCoursesOut(dataset, requiredData, tableID, chartID) {
             datasets: [
                 {
                     label: "Kurser våren 2021",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850","#3e95cd", "#8e5ea2", "#3cba9f","#c45850"],
+                    backgroundColor: colors,
                     data: points,
                 },
             ],
         },
         options: {
             legend: {
-                display: false
+                display: false,
             },
             title: {
                 display: true,
@@ -82,7 +78,7 @@ function createCoursesOut(dataset, requiredData, tableID, chartID) {
     });
 }
 
-function courseHandler(pathToFile, requiredData, tableID,chartID) {
+function courseHandler(pathToFile, requiredData, tableID, chartID) {
     let dataset = [];
     let gifout = document.getElementById(tableID);
     let gifimg = document.createElement("img");
@@ -92,12 +88,19 @@ function courseHandler(pathToFile, requiredData, tableID,chartID) {
         for (i of response.data) {
             dataset.push(i);
         }
-        createCoursesOut(dataset, requiredData, tableID,chartID);
+        createCoursesOut(dataset, requiredData, tableID, chartID);
     });
     gifimg.src = "";
     return dataset;
 }
 
-courseHandler("data/courses_1 copy.json", ["Kurs", "Kunskapspoäng (kp)"], "course-table",'course-chart');
+function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
-
+courseHandler("data/courses_1 copy.json", ["Kurs", "Kunskapspoäng (kp)"], "course-table", "course-chart");
