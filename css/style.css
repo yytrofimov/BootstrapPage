@@ -2,7 +2,7 @@
     --todo-button-color: #7e8283;
     --todo-button-hovered-color: #bac2c5;
     --todo-delete-button-color: #dc143c;
-    --body-background-color: #E0E5E6;
+    --body-background-color: #e0e5e6;
 }
 
 body {
@@ -96,5 +96,5 @@ ul {
 }
 
 tr:hover {
-background-color: #E0E5E6;
+    background-color: #e0e5e6;
 }
