@@ -2,10 +2,8 @@ function createCoursesTable(dataset, requiredData, outputDivID) {
     const rate = 18;
     let table = document.createElement("table");
     table.className = "table";
-
     let tableHead = document.createElement("thead");
     table.appendChild(tableHead);
-
     let labelString = document.createElement("tr");
     for (label of requiredData) {
         let labelCell = document.createElement("th");
@@ -37,13 +35,15 @@ function createCoursesTable(dataset, requiredData, outputDivID) {
         tableString.appendChild(stringCell);
         tableBody.append(tableString);
     }
-    console.log(sum);
 
-    console.log(requiredData.length);
+
+
     let tableString = document.createElement("tr");
     let stringCell = document.createElement("th");
     stringCell.innerHTML += "Totals";
     tableString.appendChild(stringCell);
+
+
     for (let i = 0; i < requiredData.length - 1; i++) {
         let stringCell = document.createElement("th");
         stringCell.innerHTML += sum;
@@ -53,6 +53,8 @@ function createCoursesTable(dataset, requiredData, outputDivID) {
     stringCell.innerHTML += sum * rate;
     tableString.appendChild(stringCell);
     tableBody.append(tableString);
+
+
     let outDiv = document.getElementById(outputDivID);
     outDiv.appendChild(table);
 }
@@ -73,6 +75,13 @@ function axiosGetJSON(pathToFile, requiredData, outputDivID) {
     return dataset;
 }
 
+
+
+function handleJSON(pathToFile,requiredData,outputDivID,outputCanvasID) {
+    axiosGetJSON(pathToFile,requiredData,outputDivID)
+    
+
+}
 axiosGetJSON("data/courses_1 copy.json", ["Kurs", "Kunskapspoäng (kp)"], "output_1");
 
 
