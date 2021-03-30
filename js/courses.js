@@ -103,4 +103,4 @@ function getRandomColor() {
     return color;
 }
 
-courseHandler("data/courses_1 copy.json", ["Kurs", "Kunskapspoäng (kp)"], "course-table", "course-chart");
+courseHandler("data/courses-1.json", ["Kurs", "Kunskapspoäng (kp)"], "course-table", "course-chart");
