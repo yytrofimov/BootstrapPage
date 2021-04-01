@@ -1,60 +1,73 @@
-function createCoursesOut(dataset, requiredData, tableID, chartID) {
-    const rate = 18;
-    let table = document.createElement("table");
-    table.className = "table table-responsive";
-    let tableHead = document.createElement("thead");
-    table.appendChild(tableHead);
-    let labelString = document.createElement("tr");
-    for (label of requiredData) {
-        let labelCell = document.createElement("th");
-        labelCell.innerHTML = label;
-        labelString.appendChild(labelCell);
+function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
     }
-    let labelCell = document.createElement("th");
-    labelCell.innerHTML = "Timmar (h)";
-    labelString.appendChild(labelCell);
-    tableHead.appendChild(labelString);
-    let tableBody = document.createElement("tbody");
-    table.appendChild(tableBody);
-    let points = [];
-    let labels = [];
-    for (sample of dataset) {
+    return color;
+}
+async function getCourses(pathToFile) {
+    let courses = [];
+    await axios.get(pathToFile).then((response) => {
+        for (i of response.data) {
+            courses.push(i);
+        }
+    });
+    return courses;
+}
+function getCoursesTableObj(courses, rate, requiredData, nonSummable = ["Kurs"]) {
+    requiredData.push("Timmar (h)");
+    function getTableStringObj(stringData) {
         let tableString = document.createElement("tr");
-        for (label of requiredData) {
-            if (label != "Kurs") {
-                points.push(sample[label]);
-            } else {
-                labels.push(sample[label]);
-            }
+        for (let i of stringData) {
             let stringCell = document.createElement("th");
-            stringCell.innerHTML += sample[label];
+            stringCell.innerHTML = i;
             tableString.appendChild(stringCell);
         }
-        let stringCell = document.createElement("th");
-        stringCell.innerHTML += sample[requiredData[1]] * rate;
-        tableString.appendChild(stringCell);
-        tableBody.append(tableString);
+        return tableString;
     }
-    let tableString = document.createElement("tr");
-    let stringCell = document.createElement("th");
-    stringCell.innerHTML += "Totals";
-    tableString.appendChild(stringCell);
-    for (let i = 0; i < requiredData.length - 1; i++) {
-        let stringCell = document.createElement("th");
-        stringCell.innerHTML += points.reduce((a, b) => a + b, 0);
-        tableString.appendChild(stringCell);
+    let table = document.createElement("table");
+    table.className = "table table-responsive";
+    table.appendChild(getTableStringObj(requiredData));
+    let sums = {};
+    for (let i of courses) {
+        i["Timmar (h)"] = i["Kunskapspoäng (kp)"] * rate;
+        let stringData = [];
+        for (let j of requiredData) {
+            stringData.push(i[j]);
+            if (nonSummable.indexOf(j) == -1) {
+                if (sums[j]) {
+                    sums[j].push(i[j]);
+                } else {
+                    sums[j] = [i[j]];
+                }
+            }
+        }
+        table.appendChild(getTableStringObj(stringData));
     }
-    stringCell = document.createElement("th");
-    stringCell.innerHTML += points.reduce((a, b) => a + b, 0) * rate;
-    tableString.appendChild(stringCell);
-    tableBody.append(tableString);
-    let outDiv = document.getElementById(tableID);
-    outDiv.appendChild(table);
+    let lastStringData = ["Totals"];
+    for (let i of requiredData) {
+        if (nonSummable.indexOf(i) == -1) {
+            lastStringData.push(sums[i].reduce((a, b) => a + b, 0));
+        } else if (i == "Kurs") {
+            //pass
+        } else {
+            lastStringData.push("-");
+        }
+    }
+    table.appendChild(getTableStringObj(lastStringData));
+    return table;
+}
+function getCoursesChart(courses, requiredData, coursesChartID) {
+    let labels = [];
     let colors = [];
-    for (let i = 0; i < labels.length; i++) {
+    let points = [];
+    for (i of courses) {
+        labels.push(i["Kurs"]);
         colors.push(getRandomColor());
+        points.push(i[requiredData]);
     }
-    new Chart(document.getElementById(chartID), {
+    new Chart(document.getElementById(coursesChartID), {
         type: "pie",
         data: {
             labels: labels,
@@ -77,30 +90,11 @@ function createCoursesOut(dataset, requiredData, tableID, chartID) {
         },
     });
 }
-
-function courseHandler(pathToFile, requiredData, tableID, chartID) {
-    let dataset = [];
-    let gifout = document.getElementById(tableID);
-    let gifimg = document.createElement("img");
-    gifimg.src = "./img/giphy.gif";
-    gifout.appendChild(gifimg);
-    axios.get(pathToFile).then((response) => {
-        for (i of response.data) {
-            dataset.push(i);
-        }
-        createCoursesOut(dataset, requiredData, tableID, chartID);
-    });
-    gifimg.src = "";
-    return dataset;
+async function coursesHandler(pathToFile, rate, coursesTableID, coursesChartID) {
+    let courses = await getCourses(pathToFile);
+    document
+        .getElementById(coursesTableID)
+        .appendChild(getCoursesTableObj(courses, rate, ["Kurs", "Kunskapspoäng (kp)"]));
+    getCoursesChart(courses, "Timmar (h)", coursesChartID);
 }
-
-function getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-courseHandler("data/courses-1.json", ["Kurs", "Kunskapspoäng (kp)"], "course-table", "course-chart");
+coursesHandler("data/courses-1.json", 18, "courses-table", "courses-chart");
