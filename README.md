@@ -30,6 +30,8 @@
 -   getCoursesTableObj har default arg nonSummable. Detta görs för möjligheten att skala: till exempel när du lägger till booleska värden i tabellen kommer de inte att summeras
 -   All data lagras i listorna över sum ordlista för att inte bara kunna summera utan också hitta medelvärde, median, läge och annat
 
+### Removed
+-   Gif loading animation removed, in v.1.0.3 will be added again
 ## [1.0.1] 2021-03-30:
 
 ### Fixed:
