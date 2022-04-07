@@ -1,4 +1,14 @@
-# project_1
+# BootstrapPage
+
+## Stack
+
+* Bootstrap
+* Vanilla JS
+
+## Description
+The project was done as a homework assignment in the 1st year of the Computer Science course at [Practicum](https://github.com/orgs/prakticum2k). The project was done as an *educational* one.
+
+
 
 -   Jag tog bort den inbyggda zebra Bootstap-tabellstilen och lade till hover-animationen
 -   Enligt WAI-ARIA lade jag till role, aria-label och alt attributet för bilderna ignoreras inte
